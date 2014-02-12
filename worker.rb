@@ -20,6 +20,6 @@ module Tails
       @buffer.extract(data).each do |line|
         ws.send LogFormat.output(path, line)
       end
-    end 
+    end
   end
 end

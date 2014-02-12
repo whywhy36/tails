@@ -1,1 +1,38 @@
-index.html
+<!DOCTYPE html>
+<html lang="en" ng-app>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tails Console</title>
+    <!-- Bootstrap -->
+    <script src="js/angular.min.js"></script>
+    <script src="js/tails.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <h2>Tails Console</h2>
+    <div ng-controller="TailsCtrl">
+      <form ng-submit="setFile()" class="form-inline">
+        <div class="form-group">
+          <label for="filePathInput">Log File Path</label>
+          <input id="filePathInput" type="text" ng-model="filePath" class="form-control" size="30" placeholder="log file path">
+        </div>
+        <input class="btn btn-default" type="submit" value="Tail">
+      </form>
+      <p class="bg-primary">Tailing file >> {{filePath}} </p>
+      <label for="tailFilter"> Filter String </label>
+      <input id="tailFilter" class="search-query" type="text" ng-model="search" placehodler="search">
+      <table class="table">
+        <thead>
+          <th></th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="line in lines | filter:search">
+            <td>{{line}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
